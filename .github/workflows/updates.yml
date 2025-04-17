@@ -1,0 +1,55 @@
+name: Create pull request adding new metadata, objects, and derivatives triggered from google sheets
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+  # Triggers via webhook
+  repository_dispatch:
+    types:
+    - webhook
+
+# Sets permissions of the GITHUB_TOKEN to generating pull requests
+permissions:
+  contents: write
+  pull-requests: write
+
+# Allow only one concurrent pull request (latest).
+concurrency:
+  group: 'updates'
+  cancel-in-progress: true
+
+env:
+  METADATA_FILE_URL: https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-ObrBYNpd77GWsWu1WYReYw6AEOde_zVay6KRVXimG913YNp9J5fR6qQMOizAs9A2EznC7aIVOlrX/pub?gid=0&single=true&output=csv
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Build the site in the docker container
+      run: |
+        docker run --rm \
+          -e METADATA_FILE_URL="${{ env.METADATA_FILE_URL }}" \
+          -v ${{ github.workspace }}/app/_data:/app/_data \
+          -v ${{ github.workspace }}/app/objects:/app/objects \
+          -v ${{ github.workspace }}/app/pages:/app/pages \
+          -v ${{ github.workspace }}/app/favicon.ico:/app/favicon.ico \
+          -v ${{ github.workspace }}/app/_config-github-pages.yml:/app/_config.yml \
+          dhilsfu/collectionbuilder-docker rake deploy
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v7
+      with:
+        branch: create-pull-request/updates
+        sign-commits: true
+        delete-branch: true
+        commit-message: Updated metadata, objects, and derivatives
+        title: Updated metadata, objects, and derivatives from google sheets (automated)
+        body: |
+          Includes latest updated content from google sheets
+
+          - Use the `object_download_remote_url` column to automatically download new remote resources
+          - Enable `generate-derivatives-on-build` in the `_config.yml` to generate the derivatives
+
