@@ -10,9 +10,9 @@
 # site domain, full URL to the production location of your collection
 url: https://sfu-dhil.github.io
 # path to location on the domain if necessary e.g. /digital/hjccc
-baseurl: /collectionbuilder-docker
+baseurl: /collectionbuilder-docker-demo
 # location of code, the full url to your github repository
-source-code: https://github.com/sfu-dhil/collectionbuilder-docker
+source-code: https://github.com/sfu-dhil/collectionbuilder-docker-demo
 
 ##########
 # SITE SETTINGS
