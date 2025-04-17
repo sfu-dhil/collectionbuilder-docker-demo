@@ -2,6 +2,8 @@
 
 The demo example for collectionbuilder-docker](https://github.com/sfu-dhil/collectionbuilder-docker). You can use this as a rough template for building your own dcoker based Collection Builder repo
 
+See the [github pages live demo](https://sfu-dhil.github.io/collectionbuilder-docker-demo/)
+
 ## Requirements
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
