@@ -1,6 +1,8 @@
+[![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=for-the-badge&logo=github&logoColor=white)](https://sfu-dhil.github.io/collectionbuilder-docker-demo/)
+
 # CollectionBuilder-Docker-Demo
 
-The demo example for collectionbuilder-docker](https://github.com/sfu-dhil/collectionbuilder-docker). You can use this as a rough template for building your own dcoker based Collection Builder repo
+[The demo example for collectionbuilder-docker](https://github.com/sfu-dhil/collectionbuilder-docker). You can use this as a rough template for building your own docker based Collection Builder repo
 
 See the [github pages live demo](https://sfu-dhil.github.io/collectionbuilder-docker-demo/)
 
@@ -17,7 +19,7 @@ See the [github pages live demo](https://sfu-dhil.github.io/collectionbuilder-do
         -v ${PWD}/app/pages:/app/pages \
         -v ${PWD}/app/_config.yml:/app/_config.yml \
         -v ${PWD}/app/favicon.ico:/app/favicon.ico \
-        dhilsfu/collectionbuilder-docker
+        ghcr.io/sfu-dhil/collectionbuilder-docker
 
 ### Loading metadata from remote url/google sheets
 
@@ -28,7 +30,7 @@ See the [github pages live demo](https://sfu-dhil.github.io/collectionbuilder-do
         -v ${PWD}/app/objects:/app/objects \
         -v ${PWD}/app/pages:/app/pages \
         -v ${PWD}/app/favicon.ico:/app/favicon.ico \
-        dhilsfu/collectionbuilder-docker
+        ghcr.io/sfu-dhil/collectionbuilder-docker
 
 #### Advanced loading metadata from google sheets (github pages)
 
@@ -40,7 +42,7 @@ See `.github/workflows/jekyll.yml` and `.github/workflows/updates.yml` for demo 
 
     docker run --rm -it --platform linux/amd64  \
         -v ${PWD}/app/objects:/app/objects \
-        dhilsfu/collectionbuilder-docker rake generate_derivatives
+        ghcr.io/sfu-dhil/collectionbuilder-docker rake generate_derivatives
 
 
 ## Build for deployment
@@ -52,4 +54,4 @@ See `.github/workflows/jekyll.yml` and `.github/workflows/updates.yml` for demo 
         -v ${PWD}/app/_config.yml:/app/_config.yml \
         -v ${PWD}/app/favicon.ico:/app/favicon.ico \
         -v ${PWD}/_site:/app/_site \
-        dhilsfu/collectionbuilder-docker rake deploy
+        ghcr.io/sfu-dhil/collectionbuilder-docker rake deploy

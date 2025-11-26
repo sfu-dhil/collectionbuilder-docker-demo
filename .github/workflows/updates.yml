@@ -37,7 +37,7 @@ jobs:
           -v ${{ github.workspace }}/app/pages:/app/pages \
           -v ${{ github.workspace }}/app/favicon.ico:/app/favicon.ico \
           -v ${{ github.workspace }}/app/_config-github-pages.yml:/app/_config.yml \
-          dhilsfu/collectionbuilder-docker rake deploy
+          ghcr.io/sfu-dhil/collectionbuilder-docker rake deploy
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v7

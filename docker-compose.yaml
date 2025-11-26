@@ -2,7 +2,7 @@ services:
   collectionbuilder:
     platform: linux/amd64
     container_name: collectionbuilder
-    image: dhilsfu/collectionbuilder-docker
+    image: ghcr.io/sfu-dhil/collectionbuilder-docker
     ports:
       - 4000:4000
     volumes:
@@ -11,7 +11,7 @@ services:
       - ./app/objects:/app/objects
       - ./app/pages:/app/pages
       - ./app/_config.yml:/app/_config.yml
-      - ./app/favicon.ico.yml:/app/favicon.ico
+      - ./app/favicon.ico:/app/favicon.ico
 
       # don't touch the _site folder
       - /app/_site
